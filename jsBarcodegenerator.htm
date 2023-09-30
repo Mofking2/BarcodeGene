@@ -4,13 +4,17 @@
     <meta charset="UTF-8">
     <title>Barcode Generator</title>
     <script src="https://cdn.jsdelivr.net/npm/jsbarcode@3.11.5/dist/JsBarcode.all.min.js" ></script>
+
 	 <style>
         body {
             font-family: Arial, sans-serif;
             text-align: center;
             background-color: #f0f0f0;
         }
-
+		#qr-code{
+			margin-left:40%;
+			margin-right:40%;
+		}
         h1 {
             color: #333;
         }
@@ -56,32 +60,40 @@
         <svg id="barcodeOutput"></svg>
         <div id="barcodeNumber"></div>
     </div>
+	     <div
+        class=" mt-1 p-1"
+      >
+        <div id="Generate" class="">
+          <h1 class=" text-center">
+            QR Code Generator
+          </h1>
+          <p class="mt-7">Enter your Url to generate your QR code</p>
 
-    <script>
-        function generateBarcode() {
-            const barcodeData = document.getElementById("barcodeData").value;
-            const barcodeOutput = document.getElementById("barcodeOutput");
-			const barcodeNumber = document.getElementById("barcodeNumber");
-			
-			
 
-            if (barcodeData) {
-                // Clear the previous barcode, if any
-                barcodeOutput.innerHTML = "";
-				 barcodeNumber.textContent = "";
-				 
-				 
-                // Generate the barcode
-                JsBarcode("#barcodeOutput", barcodeData, {
-                    format: "CODE128", // You can change the format as needed
-                    displayValue: false,
-                    fontSize: 14,
-                });
-				
-				 // Display the entered number
-                barcodeNumber.textContent = barcodeData;
-            }
-        }
-    </script>
+          <form id="Form" class="mt-1">
+            <input
+              id="formData"
+              type="text"
+              placeholder="Enter your url"
+              class=""
+            />
+
+
+            <button
+              id="button"
+              class=""
+            >
+              Generate your QR code
+            </button>
+          </form>
+        </div>
+        
+      </div>
+      <!-- Where the generated QR code will be. -->
+      <div id="qr-code" class=""></div>
+    <script src="barcode.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js" integrity="sha512-CNgIRecGo7nphbeZ04Sc13ka07paqdeTu0WR1IM4kNcpmBAUSHSQX0FslNhTDadL4O5SAGapGt4FodqL8My0mA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+	
+	<script src="qrcode.js"></script>
 </body>
 </html>
