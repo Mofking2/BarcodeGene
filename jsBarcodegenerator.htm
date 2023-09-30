@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Barcode Generator</title>
+    <script src="https://cdn.jsdelivr.net/npm/jsbarcode@3.11.5/dist/JsBarcode.all.min.js" ></script>
+	 <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #f0f0f0;
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        div {
+            margin: 20px;
+        }
+
+        label {
+            font-weight: bold;
+        }
+
+        input[type="text"] {
+            padding: 5px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        button {
+            padding: 10px 20px;
+            font-size: 18px;
+            background-color: #0074d9;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        #barcodeOutput {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Barcode Generator</h1>
+    <div>
+        <label for="barcodeData">Enter Data:</label>
+        <input type="text" id="barcodeData">
+        <button onclick="generateBarcode()">Generate Barcode</button>
+    </div>
+      <div id="barcodeContainer">
+        <svg id="barcodeOutput"></svg>
+        <div id="barcodeNumber"></div>
+    </div>
+
+    <script>
+        function generateBarcode() {
+            const barcodeData = document.getElementById("barcodeData").value;
+            const barcodeOutput = document.getElementById("barcodeOutput");
+			const barcodeNumber = document.getElementById("barcodeNumber");
+			
+			
+
+            if (barcodeData) {
+                // Clear the previous barcode, if any
+                barcodeOutput.innerHTML = "";
+				 barcodeNumber.textContent = "";
+				 
+				 
+                // Generate the barcode
+                JsBarcode("#barcodeOutput", barcodeData, {
+                    format: "CODE128", // You can change the format as needed
+                    displayValue: false,
+                    fontSize: 14,
+                });
+				
+				 // Display the entered number
+                barcodeNumber.textContent = barcodeData;
+            }
+        }
+    </script>
+</body>
+</html>
